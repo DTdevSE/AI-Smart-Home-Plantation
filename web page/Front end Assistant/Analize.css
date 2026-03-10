@@ -1,0 +1,46 @@
+/* Custom styles to enhance the Tailwind base */
+#dropZone.highlight {
+    border-color: #10b981;
+    background-color: #ecfdf5;
+}
+
+/* Animation for the analyze button */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+#analyzeBtn {
+    animation: pulse 2s infinite;
+}
+
+/* Custom scrollbar for detailed analysis */
+#detailedAnalysis {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#detailedAnalysis::-webkit-scrollbar {
+    width: 6px;
+}
+
+#detailedAnalysis::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+#detailedAnalysis::-webkit-scrollbar-thumb {
+    background: #10b981;
+    border-radius: 10px;
+}
+
+/* Transition effects */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

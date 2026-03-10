@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgroBot Chat</title>
+ <!-- Favicon -->
+    <link rel="icon" href="img/favicon.ico">
+
+
+ <!-- Title -->
+    <title>Home - Gardening &amp; plantation HTML Template</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="../../img/core-img/favicon.ico">
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="../../style.css">
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  
+  background: linear-gradient(135deg, #e6f7e9, #dfffe8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+}
+
+.chat-box {
+  width: 100%;
+  max-width: 950px;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 25px;
+  box-shadow: 0 10px 35px rgba(76,175,80,0.15);
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+.chat-container {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 15px;
+  padding-right: 8px;
+}
+
+.chat-container::-webkit-scrollbar { width: 6px; }
+.chat-container::-webkit-scrollbar-thumb { background: #a5d6a7; border-radius: 3px; }
+
+/* Messages */
+.user-message, .ai-message {
+  padding: 14px 18px;
+  border-radius: 18px;
+  max-width: 90%;
+  line-height: 1.6;
+  word-wrap: break-word;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.user-message {
+  align-self: flex-end;
+  background: #2e7d32;
+  color: white;
+}
+
+.ai-message {
+  align-self: flex-start;
+  background: #f1f8e9;
+  border-left: 4px solid #4caf50;
+}
+
+/* DARK PROFESSIONAL TABLE STYLE */
+.ai-message table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  background: #111;
+  color: #f5f5f5;
+  border-radius: 12px;
+  overflow: hidden;
+  font-size: 14px;
+}
+
+.ai-message th {
+  background: #1e1e1e;
+  color: #ffffff;
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #333;
+}
+
+.ai-message td {
+  padding: 12px;
+  border-bottom: 1px solid #2c2c2c;
+}
+
+.ai-message tr:hover {
+  background: #1a1a1a;
+}
+
+.ai-message tr:last-child td {
+  border-bottom: none;
+}
+
+.ai-message h3 {
+  color: #2e7d32;
+  margin-top: 10px;
+}
+
+.message-image {
+  max-width: 100%;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+/* Input */
+textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 15px;
+  border: 2px solid #a5d6a7;
+  resize: none;
+  font-size: 15px;
+}
+
+textarea:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 0 3px rgba(76,175,80,0.2);
+  outline: none;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+button {
+  flex: 1;
+  padding: 12px;
+  border-radius: 15px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 15px;
+  color: white;
+  transition: 0.3s;
+}
+
+.upload-btn { background: #ff9800; }
+.upload-btn:hover { background: #f57c00; }
+
+.voice-btn { background: #9c27b0; }
+.voice-btn:hover { background: #7b1fa2; }
+
+.send-btn { background: #4caf50; }
+.send-btn:hover { background: #388e3c; }
+
+.loading {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #c8e6c9;
+  border-top-color: #4caf50;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.footer-links {
+  margin-top: 20px;
+  text-align: center;
+}
+.footer-links .logout-link {
+  color: red;
+}
+</style>
+</head>
+
+<body>
+ <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-circle"></div>
+        <div class="preloader-img">
+            <img src="img/leaf.png" alt="">
+        </div>
+    </div>
+<div class="chat-box">
+  <h2>🌿 AgroBot Chat</h2>
+
+  <div class="chat-container" id="chatContainer"></div>
+
+  <textarea id="message" placeholder="Ask about your plants..." rows="3"></textarea>
+
+  <div class="button-container">
+    <input type="file" id="imageInput" accept="image/*" hidden>
+    
+    <button class="send-btn" onclick="sendMessage()">Send</button>
+
+    
+  </div>
+  <div class="footer-links">
+            <a href="../../index.php">Home</a> |
+            <a href="../../logout.php" class="logout-link">Logout</a>
+        </div>
+
+
+</div>
+
+<script>
+let selectedImage = null;
+
+document.getElementById('imageInput').addEventListener('change', e => {
+  selectedImage = e.target.files[0];
+});
+
+function startVoice() {
+  if (!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
+    alert('Voice not supported.');
+    return;
+  }
+
+  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+  recognition.lang = 'en-US';
+  recognition.start();
+
+  recognition.onresult = e => {
+    document.getElementById('message').value = e.results[0][0].transcript;
+  };
+}
+
+async function sendMessage() {
+  const messageInput = document.getElementById('message');
+  const message = messageInput.value.trim();
+  if (!message && !selectedImage) return;
+
+  const chatContainer = document.getElementById('chatContainer');
+
+  const userDiv = document.createElement('div');
+  userDiv.classList.add('user-message');
+
+  if (selectedImage) {
+    const img = document.createElement('img');
+    img.src = URL.createObjectURL(selectedImage);
+    img.classList.add('message-image');
+    userDiv.appendChild(img);
+  }
+
+  if (message) userDiv.append(message);
+  chatContainer.appendChild(userDiv);
+  messageInput.value = "";
+
+  const aiDiv = document.createElement('div');
+  aiDiv.classList.add('ai-message');
+  aiDiv.innerHTML = '<span class="loading"></span> AgroBot is analyzing...';
+  chatContainer.appendChild(aiDiv);
+  chatContainer.scrollTop = chatContainer.scrollHeight;
+
+  try {
+    let response;
+
+    if (selectedImage) {
+      const formData = new FormData();
+      formData.append('image', selectedImage);
+      formData.append('message', message);
+      response = await fetch('/chat-image', { method: 'POST', body: formData });
+    } else {
+      response = await fetch('/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message })
+      });
+    }
+
+    const data = await response.json();
+
+    /* IMPORTANT: Use innerHTML to render tables */
+    aiDiv.innerHTML = data.reply || "No response.";
+
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+
+    selectedImage = null;
+    document.getElementById('imageInput').value = "";
+
+  } catch (err) {
+    aiDiv.innerHTML = "Error 😢 Please try again.";
+  }
+}
+
+document.getElementById('message').addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendMessage();
+  }
+});
+</script>
+
+ <!-- ##### All Javascript Files ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="../../js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="../../js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="../../js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="../../js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="../../js/active.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+</body>
+</html>
