@@ -1,0 +1,27 @@
+{
+  "class_names": [
+    "Tomato Bacterial spot",
+    "Tomato Early blight",
+    "Tomato Late blight",
+    "Tomato Leaf Mold",
+    "Tomato Septoria leaf spot",
+    "Tomato Spider mites Two spotted spider mite",
+    "Tomato Target Spot",
+    "Tomato Tomato mosaic virus",
+    "Tomato Tomato Yellow Leaf Curl Virus",
+    "Tomato healthy"
+  ],
+
+  "class_indices": {
+    "Tomato Bacterial spot": 0,
+    "Tomato Early blight": 1,
+    "Tomato Late blight": 2,
+    "Tomato Leaf Mold": 3,
+    "Tomato Septoria leaf spot": 4,
+    "Tomato Spider mites Two spotted spider mite": 5,
+    "Tomato Target Spot": 6,
+    "Tomato Tomato mosaic virus": 7,
+    "Tomato Tomato Yellow Leaf Curl Virus": 8,
+    "Tomato healthy": 9
+  }
+}
