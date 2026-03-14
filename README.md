@@ -2,7 +2,7 @@
 
 <p align="center">
 
-<img src="docs/system-setup.png" width="800">
+<img src="arduino.jpg" width="800">
 
 </p>
 
