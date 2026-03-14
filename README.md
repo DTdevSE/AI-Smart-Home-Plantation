@@ -68,18 +68,28 @@ The model analyzes leaf images and predicts plant health conditions.
 
 ---
 
-# 🧬 AI Model Workflow
+# 🧬 AI Potato Leaf Disease Detection System Workflow
 
 ```mermaid
 graph TD
 
-A[Leaf Image Upload]
-B[Image Preprocessing]
-C[Deep Learning Model]
-D[Disease Prediction]
-E[Display Result]
+A[User Uploads Plant Image] --> B[Image Preprocessing]
 
-A --> B
-B --> C
-C --> D
-D --> E
+B --> C[Leaf Classification Model]
+
+C --> D{Is Potato Leaf?}
+
+D -->|No| E[Display Message: Not a Potato Leaf]
+
+D -->|Yes| F[Disease Detection CNN Model]
+
+F --> G[Disease Prediction]
+
+G --> H[Confidence Score Calculation]
+
+H --> I[AI Recommendation Engine]
+
+I --> J[Suggested Treatment / Fertilizer Advice]
+
+J --> K[Display Final Result to User]
+```
