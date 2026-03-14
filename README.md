@@ -39,7 +39,7 @@ The system uses **environmental sensors** and **AI-based leaf disease detection*
 
 <p align="center">
 
-<img src="docs/system-setup.png" width="700">
+<img src="arduino diagrme.png" width="700">
 
 </p>
 
