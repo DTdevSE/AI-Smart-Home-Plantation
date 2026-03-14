@@ -161,5 +161,5 @@ G --> H[Return HTML Response to Frontend]
 
 # 👨‍💻 Author
 
-Developed by **Dinitha Thewmika (P U N K)**  
+Developed by Dinitha Thewmika  
 AI & Software Development Project
