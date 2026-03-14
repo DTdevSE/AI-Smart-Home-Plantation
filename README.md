@@ -93,3 +93,73 @@ I --> J[Suggested Treatment / Fertilizer Advice]
 
 J --> K[Display Final Result to User]
 ```
+# 🌿 AgroBot – AI Agriculture Assistant
+
+AgroBot is an AI-powered agriculture assistant built with **Flask, Ollama AI, and Sentence Transformers**.  
+It helps farmers and users get **plant care advice, fertilizer recommendations, and crop information** using natural language questions.
+
+The system also supports **image uploads** to assist with plant disease or crop-related questions.
+
+---
+
+# 🚀 Features
+
+- 🤖 AI agriculture assistant powered by **Ollama LLM**
+- 🌱 Plant knowledge retrieval using **semantic search**
+- 🧠 Embedding-based similarity search with **Sentence Transformers**
+- 🖼 Image upload support for plant-related queries
+- 📊 Structured responses formatted in **clean HTML**
+- ⚡ Fast API built with **Flask**
+- 🌍 CORS enabled for frontend integration
+
+---
+
+# 🧬 System Workflow
+
+```mermaid
+graph TD
+
+A[User Message or Image Upload] --> B[Flask API]
+
+B --> C[Retrieve Plant Data From CSV]
+
+C --> D[Semantic Search Using SentenceTransformer]
+
+D --> E[Build Context]
+
+E --> F[Send Prompt to Ollama AI]
+
+F --> G[AI Generates Response]
+
+G --> H[Return HTML Response to Frontend]
+```
+
+---
+
+
+# 🧠 Technologies Used
+
+- Python
+- Flask
+- Ollama AI
+- Sentence Transformers
+- Scikit-learn
+- Pandas
+- HTML / CSS
+
+---
+
+# 🌱 Future Improvements
+
+- Plant disease detection using CNN models
+- Weather API integration
+- Fertilizer recommendation system
+- Mobile-friendly interface
+- Multi-language support
+
+---
+
+# 👨‍💻 Author
+
+Developed by **Dinitha Thewmika (P U N K)**  
+AI & Software Development Project
